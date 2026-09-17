@@ -4,8 +4,8 @@ public class TimedEvent extends Event {
     private Time startTime;
     private Time endTime;
 
-    public TimedEvent(String title, String location, Time startTime, Time endTime) {
-        super(title, location);
+    public TimedEvent(String title, String location, Boolean mutable, Time startTime, Time endTime) {
+        super(title, location, mutable);
         this.startTime = startTime;
         this.endTime = endTime;
     }
