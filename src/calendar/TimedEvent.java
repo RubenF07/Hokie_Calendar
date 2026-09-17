@@ -5,7 +5,7 @@ public class TimedEvent extends Event {
     private Time endTime;
 
     public TimedEvent(String title, String location, Time startTime, Time endTime) {
-        super(title, location);
+        super(title, location, true);
         this.startTime = startTime;
         this.endTime = endTime;
     }

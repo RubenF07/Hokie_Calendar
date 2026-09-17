@@ -72,15 +72,13 @@ public class Month
 
     // ----------------------------------------------------------
     /**
-     * Place a description of your method here.
+     * Gets the entire month's worth of days
      * 
-     * @param dayNumber:
-     *            nth of the month
-     * @return specific Day from month array
+     * @return day array
      */
-    public Day getDay(int dayNumber)
+    public Day[] getDays()
     {
-        return entireMonth[dayNumber - 1];
+        return entireMonth;
     }
 
 
