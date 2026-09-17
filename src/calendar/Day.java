@@ -1,4 +1,5 @@
 package calendar;
+<<<<<<< Updated upstream
 // -------------------------------------------------------------------------
 /**
  *  Write a one-sentence summary of your class here.
@@ -8,6 +9,8 @@ package calendar;
  *  @author Tiffany
  *  @version Sep 17, 2026
  */
+=======
+>>>>>>> Stashed changes
 public class Day
 {
     //~ Fields ................................................................
