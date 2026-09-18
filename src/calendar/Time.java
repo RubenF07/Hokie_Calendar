@@ -16,6 +16,14 @@ public class Time {
     }
 
     public int compareTo(Time t) {
+        if (t.am != this.am) {
+            if(t.am) {
+                return -1;
+            }
+            else {
+                return 1;
+            }
+        }
         if (t.hour > this.hour || (t.hour == this.hour && t.minute > this.minute)) {
             return 1;
         } else if (t.hour == this.hour && t.minute == this.minute) {
@@ -23,5 +31,7 @@ public class Time {
         } else if (t.hour < this.hour || (t.hour == this.hour && t.minute < this.minute)) {
             return -1;
         }
+        
+        return 0; //TODO cover all cases
     }
 }
