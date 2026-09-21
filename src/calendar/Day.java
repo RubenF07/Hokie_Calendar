@@ -1,24 +1,26 @@
 package calendar;
+
 import java.util.ArrayList;
+
 // -------------------------------------------------------------------------
 /**
- *  Write a one-sentence summary of your class here.
- *  Follow it with additional details about its purpose, what abstraction
- *  it represents, and how to use it.
+ * Write a one-sentence summary of your class here. Follow it with additional
+ * details about its purpose, what abstraction it represents, and how to use it.
  * 
- *  @author Sarah
- *  @version Sep 17, 2026
+ * @author Sarah
+ * @version Sep 17, 2026
  */
 public class Day
 {
-    //~ Fields ................................................................
+    // ~ Fields ................................................................
     private ArrayList<Event> listOfEvents;
     private int date;
-    
-    //~ Constructors ..........................................................
+
+    // ~ Constructors ..........................................................
     // ----------------------------------------------------------
     /**
      * Create a new Day object.
+     * 
      * @param date
      */
     public Day(int date)
@@ -26,25 +28,31 @@ public class Day
         this.date = date;
         listOfEvents = new ArrayList<Event>();
     }
-    
-    //~Public  Methods ........................................................
+
+
+    // ~Public Methods ........................................................
     // ----------------------------------------------------------
     /**
      * Adds an event to the day
-     * @param e (new Event)
+     * 
+     * @param e
+     *            (new Event)
      * @return true if added successfully
      */
     public boolean addEvent(Event e)
     {
         listOfEvents.add(e);
-        //orderEvents();
+        orderEvents();
         return true;
     }
-    
+
+
     // ----------------------------------------------------------
     /**
      * Removes an event from the day
-     * @param e (event to be removed)
+     * 
+     * @param e
+     *            (event to be removed)
      * @return event removed
      */
     public Event deleteEvent(Event e)
@@ -52,51 +60,79 @@ public class Day
         listOfEvents.remove(e);
         return e;
     }
-    
+
+
     // ----------------------------------------------------------
     /**
      * Get the numerical date of the day
+     * 
      * @return date
      */
     public int getDate()
     {
         return date;
     }
-    
+
 
     // ----------------------------------------------------------
     /**
-     * Places events in order of start time throughout day
-     * All day events shown first
+     * Places events in order of start time throughout day All day events shown
+     * first
      */
-/*    
+
     public void orderEvents()
     {
-        ArrayList<Event> tempTimed = new ArrayList<Event>();
+        // Initializes two temporary branches to sort
+        ArrayList<TimedEvent> tempTimed = new ArrayList<TimedEvent>();
         ArrayList<Event> tempUntimed = new ArrayList<Event>();
-        Event curr;
+        ArrayList<Event> newList = new ArrayList<Event>();
         TimedEvent currTimedEvent;
-        for(int i = 0; i < listOfEvents.size(); i++)
+        boolean found = false;
+        int compare;
+
+        for (int i = 0; i < listOfEvents.size(); i++)
         {
-            curr = listOfEvents.get(i);
-            if(curr instanceof TimedEvent)
+            // if event is timed find the index of the first time after the
+            // event and add event there
+            if (listOfEvents.get(i) instanceof TimedEvent)
             {
-                currTimedEvent = curr;
-                tempTimed.add(curr);
-                for(int j = 0; j < tempTimed.size(); j ++)
+                found = false;
+                currTimedEvent = (TimedEvent)listOfEvents.get(i);
+
+                for (int j = 0; j < tempTimed.size(); j++)
                 {
-                    
-                    if((tempTimed..compareTo(tempTimed.get(j)) > 0)
+                    while (!found)
                     {
-                        
+                        compare = currTimedEvent.getStart()
+                            .compareTo(tempTimed.get(j).getStart());
+                        if (compare >= 0)
+                        {
+                            tempTimed.add(j, currTimedEvent);
+                            found = true;
+                        }
+
                     }
-                                        
-                    
                 }
             }
-            
+            // if event is not timed add to untimed list
+            else if (listOfEvents.get(i) instanceof Event)
+            {
+                tempUntimed.add(listOfEvents.get(i));
+            }
         }
+        // combine timed and untimed list to hold all timed events in order
+        // followed by untimed events
+        for (int i = 0; i < tempTimed.size(); i++)
+        {
+            newList.add(tempTimed.get(i));
+        }
+        for (int i = 0; i < tempUntimed.size(); i++)
+        {
+            newList.add(tempUntimed.get(i));
+        }
+
+        listOfEvents = newList;
+
     }
-*/    
 
 }
