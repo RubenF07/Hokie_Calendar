@@ -162,4 +162,31 @@ public class Day
 
     }
 
+
+    // ----------------------------------------------------------
+    /**
+     * added on for display sake. returns whether the day has events or not
+     * 
+     * @return listOfEvents.size() != 0
+     */
+    public boolean containEvent()
+    {
+        return listOfEvents.size() != 0;
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * for display
+     */
+    public void printEvents()
+    {
+        for (Event event : listOfEvents)
+        {
+            System.out.println(event.toString());
+            // Spacing between months
+            // System.out.println();
+        }
+    }
+
 }
