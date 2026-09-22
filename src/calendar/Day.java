@@ -150,10 +150,14 @@ public class Day
         return listOfEvents;
     }
 
+    
+    /**
+     * When day is printed, each event printed on new line. 
+     */
 
     public String toString()
     {
-        String result = "";
+        String result = "Date: " + date + "\n";
         for (int i = 0; i < listOfEvents.size(); i++)
         {
             result += listOfEvents.get(i) + "\n";

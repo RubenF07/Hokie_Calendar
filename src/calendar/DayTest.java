@@ -34,22 +34,22 @@ public class DayTest
     // ~Test Methods ........................................................
     public void testAddEvent()
     {
-        assertEquals("", today.toString());
+        assertEquals("Date: 22\n", today.toString());
 
         today.addEvent(timedSecond);
         assertEquals(1, today.getListOfEvents().size());
-        assertEquals("Birthday at Home from 5:30-7:45\n", today.toString());
+        assertEquals("Date: 22\nBirthday at Home from 5:30-7:45\n", today.toString());
 
         today.addEvent(allDay);
         assertEquals(2, today.getListOfEvents().size());
         assertEquals(
-            "Birthday at Home from 5:30-7:45\nAll Day at Here\n",
+            "Date: 22\nBirthday at Home from 5:30-7:45\nAll Day at Here\n",
             today.toString());
 
         today.addEvent(timedFirst);
         assertEquals(3, today.getListOfEvents().size());
         assertEquals(
-            "Yoga at Gym from 11:30-1:30\nBirthday at Home from 5:30-7:45\nAll Day at Here\n",
+            "Date: 22\nYoga at Gym from 11:30-1:30\nBirthday at Home from 5:30-7:45\nAll Day at Here\n",
             today.toString());
     }
 }
