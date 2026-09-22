@@ -20,23 +20,27 @@ public class Display
    public Display(){}   
   
   
-   public void printMonth(Month month) {
+    /**
+     * Place a description of your method here.
+     * @param month
+     */
+    public void printMonth(Month month) {
        String ANSI_RED = "\u001B[31m";
        //String ANSI_GREEN = "\u001B[32m";
        //String ANSI_ORANGE = "\u001B[33m";
        String outerDivider = "-----------------------------";
        String innerDivider = "|---------------------------|";
-       // 1. Top border
+
        System.out.println(outerDivider);
-       // 2. Month Title Header
-       // %-26s left-aligns the text within a fixed 26-character width
+
+
        String titleText = month.getMonth() + " 2026 :)";
        System.out.printf("| %-25s |\n", titleText);
-       // 3. Day Names Header
+
        System.out.println(innerDivider);
        System.out.println("|Sun|Mon|Tue|Wed|Thu|Fri|Sat|");
        System.out.println(innerDivider);
-       // 4. Grid Rows
+       // Grid Rows
        int startDayIndex = 0;
        switch(month.getStartWeekDay()){
            case ("Monday"):
@@ -89,14 +93,21 @@ public class Display
   
   
  
-   //~Public  Methods ........................................................
-   /*public void printDay() {
-       //code
+   // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
+    public void printDay(Day d) {
+       d.printEvents();
    }
   
-   public void printEvent() {
-       //code
-   }*/
+   // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
+    public void printEvent() {
+        //code
+   }
   
   
 }

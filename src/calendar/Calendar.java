@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 /* // -------------------------------------------------------------------------
 /**
- *  A file with information on month, days and start week day would make 
- * this easier, but temporarily I'm hard coding everything.
+ *  A file with information on month, days and start week day is used, 
+ *  Calendar initiates the school year and includes the display class
  * 
  *  @author Tiffany
  *  @version Sep 17, 2026
