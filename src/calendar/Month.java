@@ -30,6 +30,9 @@ public class Month
         this.startWeekDay = startWeekDay;
 
         entireMonth = new Day[numDays];
+        for (int i = 0; i < numDays; i++) {
+            entireMonth[i] = new Day(i + 1);
+        }
     }
 
 

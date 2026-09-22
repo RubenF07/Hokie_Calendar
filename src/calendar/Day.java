@@ -134,5 +134,14 @@ public class Day
         listOfEvents = newList;
 
     }
-
+    
+    // ----------------------------------------------------------
+    /**
+     * added on for display sake. returns whether the day has events or not
+     * @return listOfEvents.size() != 0
+     */
+    public boolean containEvent()
+    {
+        return listOfEvents.size() != 0;
+    }
 }
