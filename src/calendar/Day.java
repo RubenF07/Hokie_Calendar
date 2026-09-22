@@ -76,18 +76,19 @@ public class Day
 
     // ----------------------------------------------------------
     /**
-     * Places events in order of start time throughout day All day events shown
+     * Places events in order of start time throughout day. All day events shown
      * first
      */
 
-    public void orderEvents()
+    private void orderEvents()
     {
         // Initializes two temporary branches to sort
         ArrayList<TimedEvent> tempTimed = new ArrayList<TimedEvent>();
         ArrayList<Event> tempUntimed = new ArrayList<Event>();
         ArrayList<Event> newList = new ArrayList<Event>();
         TimedEvent currTimedEvent;
-        boolean found = false;
+        int nextIndex = 0;
+        boolean found;
         int compare;
 
         for (int i = 0; i < listOfEvents.size(); i++)
@@ -107,15 +108,17 @@ public class Day
                             .compareTo(tempTimed.get(j).getStart());
                         if (compare >= 0)
                         {
-                            tempTimed.add(j, currTimedEvent);
+                            nextIndex = j;
                             found = true;
                         }
 
                     }
                 }
+                tempTimed.add(nextIndex, currTimedEvent);
+
             }
             // if event is not timed add to untimed list
-            else if (listOfEvents.get(i) instanceof Event)
+            else if (listOfEvents.get(i) != null)
             {
                 tempUntimed.add(listOfEvents.get(i));
             }
@@ -132,6 +135,30 @@ public class Day
         }
 
         listOfEvents = newList;
+
+    }
+
+
+    // ----------------------------------------------------------
+    /**
+     * Get the list of events for the day
+     * 
+     * @return listOfEvents
+     */
+    public ArrayList<Event> getListOfEvents()
+    {
+        return listOfEvents;
+    }
+
+
+    public String toString()
+    {
+        String result = "";
+        for (int i = 0; i < listOfEvents.size(); i++)
+        {
+            result += listOfEvents.get(i) + "\n";
+        }
+        return result;
 
     }
 
