@@ -5,7 +5,7 @@ public class Display
    /**
     * Print month calendar based on input.
     * Example:
-    *       
+    *
        ----------------------------
        | August 2026 :))           |
        |---------------------------|
@@ -16,10 +16,10 @@ public class Display
        -----------------------------
     * @param month
     */
-  
-   public Display(){}   
-  
-  
+
+   public Display(){}
+
+
     /**
      * Place a description of your method here.
      * @param month
@@ -31,6 +31,7 @@ public class Display
        String outerDivider = "-----------------------------";
        String innerDivider = "|---------------------------|";
 
+       System.out.println(" ");
        System.out.println(outerDivider);
 
 
@@ -57,12 +58,12 @@ public class Display
                startDayIndex = 6;
        }
        int totalDays = month.getNumDays();  // e.g., 31 for August
-      
+
        int currentColumn = 0;
        System.out.print("|");
        // Print leading X's for days before the 1st
        for (int i = 0; i < startDayIndex; i++) {
-           System.out.print(" X |");
+           System.out.print("   |");
            currentColumn++;
        }
        // Print month days
@@ -82,32 +83,38 @@ public class Display
        }
        // Pad remaining empty cells in the final row with X's
        while (currentColumn > 0 && currentColumn < 7) {
-           System.out.print(" X |");
+           System.out.print("   |");
            currentColumn++;
        }
        // 5. Bottom border
        System.out.println();
        System.out.println(outerDivider);
    }
-      
-  
-  
- 
+
+
+
+
    // ----------------------------------------------------------
     /**
      * Place a description of your method here.
      */
-    public void printDay(Day d) {
+    public void printDay(Day d, Month m) {
+       System.out.println("\n"+m.getMonth()+" "+d.getDate());
+       System.out.println("-----------");
+       if (d.getListOfEvents().size() == 0) {
+           System.out.println("NO EVENTS TODAY");
+       }
        d.printEvents();
+       System.out.println(" ");
    }
-  
+
    // ----------------------------------------------------------
     /**
      * Place a description of your method here.
      */
-    public void printEvent() {
-        //code
+    public void printEvent(Event e) {
+        System.out.println("\n"+e);
    }
-  
-  
+
+
 }

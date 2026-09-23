@@ -187,7 +187,7 @@ public class Day
     {
         for (Event event : listOfEvents)
         {
-            System.out.println(event.toString());
+            System.out.println(event.getTitle());
             // Spacing between months
             // System.out.println();
         }

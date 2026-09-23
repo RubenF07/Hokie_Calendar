@@ -21,11 +21,11 @@ public class Calendar {
 
     // Default constructor: Initializes 12 Month objects for 2026
     public Calendar() {
-        this.fullCalendar = new Month[12];
+        this.fullCalendar = new Month[10];
         this.display = new Display();
         
         try {
-            File file = new File("calenderSetUp.txt");
+            File file = new File("monthinfo");
             Scanner scanner = new Scanner(file);
             
             int index = 0;

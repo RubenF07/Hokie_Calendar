@@ -6,9 +6,9 @@ import java.util.Scanner;
 // -------------------------------------------------------------------------
 /**
  * Creates a day object that contains and manages events for a specific day
- * 
+ *
  * @author Ruben Finkel
- * @version Sep 20, 2026
+ * @version Sep 21, 2026
  */
 public class Main {
     public static Calendar calendar;
@@ -27,10 +27,11 @@ public class Main {
 
 
     public static void mainMenu() {
-        Month[] months = calendar.getMonths();
+        Month[] months = calendar.getYear();
         System.out.println("Which month would you like to view?");
+
         for (int i = 0; i < months.length; i++) {
-            System.out.println("" + (i + 1) + ": " + months[i]);
+            System.out.println("" + (i + 1) + ": " + months[i].getMonth());
         }
         System.out.println("0: Exit\n");
 
@@ -52,7 +53,7 @@ public class Main {
             System.out.println("---------\n");
             System.out.println("Which month would you like to view?");
             for (int i = 0; i < months.length; i++) {
-                System.out.println("" + (i + 1) + ": " + months[i]);
+                System.out.println("" + (i + 1) + ": " + months[i].getMonth());
             }
             System.out.println("0: Exit\n");
 
@@ -109,7 +110,7 @@ public class Main {
 
 
     public static void dayMenu(Day day, Month month) {
-        disp.printDay(day);
+        disp.printDay(day, month);
         ArrayList<Event> events = day.getListOfEvents();
 
         // get day operation
@@ -132,8 +133,8 @@ public class Main {
             }
 
             int mutableCount = 0;
-            for (int i = 0; i < events.size(); i++) {
-                if (events.get(i).getMutability()) {
+            for (Event event : events) {
+                if (event.getMutability()) {
                     mutableCount++;
                 }
             }
@@ -154,21 +155,20 @@ public class Main {
                         break;
                     }
                     eventIdx = inputEventIdx(events);
-                    disp.printEvent(events.get(eventIdx));
                     eventEditMenu(events.get(eventIdx));
                     break;
                 case 3:
                     addEventMenu(events);
                     break;
                 case 4:
-                    addTimedEventMenu();
+                    addTimedEventMenu(events);
                     break;
                 case 5:
                     if (mutableCount == 0) {
                         System.out.println("\nNo custom events available.\n");
                         break;
                     }
-                    int i = inputEventIdx(events);
+                    eventIdx = inputEventIdx(events);
                     day.deleteEvent(events.get(eventIdx));
                     break;
                 default:
@@ -176,7 +176,7 @@ public class Main {
             }
 
             // Re-prompt
-            disp.printDay(day);
+            disp.printDay(day, month);
 
             // get day operation
             System.out.println("Which option would you like:");
@@ -217,14 +217,14 @@ public class Main {
 
         // get event operation
         System.out.println("Which option would you like:");
-        System.out.println("1: Change Title\n");
-        System.out.println("2: Change Description\n");
-        System.out.println("3: Change Location\n");
+        System.out.println("1: Change Title");
+        System.out.println("2: Change Description");
+        System.out.println("3: Change Location");
         System.out.println("0: Go Back\n");
 
         int userInput = input.nextInt();
         while (userInput != 0) {
-            while (true) {
+            while (!(userInput >= 0 && userInput <= 3)) {
                 System.out.println("Invalid Input. Try again:\n");
                 userInput = input.nextInt();
             }
@@ -236,16 +236,19 @@ public class Main {
             switch (userInput) {
                 case 1:
                     System.out.println("Enter new title:\n");
+                    input.nextLine();
                     fieldVal = input.nextLine();
                     event.setTitle(fieldVal);
                     break;
                 case 2:
                     System.out.println("Enter new description:\n");
+                    input.nextLine();
                     fieldVal = input.nextLine();
                     event.setDescription(fieldVal);
                     break;
                 case 3:
                     System.out.println("Enter new location:\n");
+                    input.nextLine();
                     fieldVal = input.nextLine();
                     event.setLocation(fieldVal);
                     break;
@@ -273,20 +276,21 @@ public class Main {
         String description;
         String location;
 
+        input.nextLine();
         System.out.println("Enter event title:");
         title = input.nextLine();
-        
+
         System.out.println("Enter event description:");
         description = input.nextLine();
-        
+
         System.out.println("Enter event location:");
         location = input.nextLine();
 
-        events.add(new Event(title, description, location, true))
+        events.add(new Event(title, description, location, true));
     }
 
 
-    public static void addTimedEventMenu() {
+    public static void addTimedEventMenu(ArrayList<Event> events) {
         String title;
         String description;
         String location;
@@ -294,6 +298,7 @@ public class Main {
         Time start;
         Time end;
 
+        input.nextLine();
         System.out.println("Enter event title:");
         title = input.nextLine();
 
@@ -307,32 +312,25 @@ public class Main {
         start = inputTime(null);
 
         System.out.println("Enter event end time (format: 03:12pm):");
-        start = inputTime(start);
+        end = inputTime(start);
+        
+        events.add(new TimedEvent(title, description, location, true, start, end));
     }
 
 
-    // ensures proper time formatting, validates format before creating Time(int
-    // hour, int minute, Boolean am)
+    // ensures proper time formatting
     public static Time inputTime(Time min) {
         String timeStr = input.nextLine();
-        Boolean valid = false;
+        boolean valid = false;
 
         int hour = 0;
         int minute = 0;
         Boolean am = true;
+        
+        Time res = null;
 
         while (!valid) {
-            if (timeStr.length() != 7) {
-                System.out.println("Invalid Input. Try again:\n");
-                timeStr = input.nextLine();
-                continue;
-            }
-            if (timeStr.charAt(2) != ':') {
-                System.out.println("Invalid Input. Try again:\n");
-                timeStr = input.nextLine();
-                continue;
-            }
-            if (timeStr.charAt(5) != 'a' && timeStr.charAt(5) != 'p') {
+            if ((timeStr.length() != 7) || (timeStr.charAt(2) != ':') || (timeStr.charAt(5) != 'a' && timeStr.charAt(5) != 'p')) {
                 System.out.println("Invalid Input. Try again:\n");
                 timeStr = input.nextLine();
                 continue;
@@ -363,12 +361,19 @@ public class Main {
                 timeStr = input.nextLine();
                 continue;
             }
+            
+            res = new Time(hour, minute, am);
+            if(min != null && min.compareTo(res) == -1) {
+                System.out.println("End time must be after the start. Try again:\n");
+                timeStr = input.nextLine();
+                continue;
+            }
 
             am = (timeStr.charAt(5) == 'a');
 
             valid = true;
         }
 
-        return new Time(hour, minute, am);
+        return res;
     }
 }
