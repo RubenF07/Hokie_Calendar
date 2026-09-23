@@ -13,14 +13,10 @@ public class Time {
 
     @Override
     public String toString() {
-        String am_pm;
-        if(am) {
-            am_pm = "am";
-        }
-        else {
-            am_pm = "pm";
-        }
-        return hour + ":" + minute + am_pm;
+            if(am) {
+                return hour + ":" + minute + " AM";
+            }
+            return hour + ":" + minute + " PM";
     }
 
     public int compareTo(Time t) {
@@ -36,10 +32,8 @@ public class Time {
             return 1;
         } else if (t.hour == this.hour && t.minute == this.minute) {
             return 0;
-        } else if (t.hour < this.hour || (t.hour == this.hour && t.minute < this.minute)) {
+        } else {
             return -1;
         }
-
-        return 0; //TODO cover all cases
     }
 }
