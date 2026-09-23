@@ -1,7 +1,7 @@
 package calendar;
 
 /**
- * Creates a day object that contains and manages events for a specific day
+ * Creates a Month event that holds information about a given month
  * 
  * @author Sarah
  * @version Sep 17, 2026

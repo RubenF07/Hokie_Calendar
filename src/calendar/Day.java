@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 // -------------------------------------------------------------------------
 /**
- * Write a one-sentence summary of your class here. Follow it with additional
- * details about its purpose, what abstraction it represents, and how to use it.
+ * Day class contains a list of events
  * 
  * @author Sarah
  * @version Sep 17, 2026
