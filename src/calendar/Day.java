@@ -10,8 +10,7 @@ import java.util.ArrayList;
  * @author Sarah
  * @version Sep 17, 2026
  */
-public class Day
-{
+public class Day {
     // ~ Fields ................................................................
     private ArrayList<Event> listOfEvents;
     private int date;
@@ -23,8 +22,7 @@ public class Day
      * 
      * @param date
      */
-    public Day(int date)
-    {
+    public Day(int date) {
         this.date = date;
         listOfEvents = new ArrayList<Event>();
     }
@@ -39,8 +37,7 @@ public class Day
      *            (new Event)
      * @return true if added successfully
      */
-    public boolean addEvent(Event e)
-    {
+    public boolean addEvent(Event e) {
         listOfEvents.add(e);
         orderEvents();
         return true;
@@ -55,8 +52,7 @@ public class Day
      *            (event to be removed)
      * @return event removed
      */
-    public Event deleteEvent(Event e)
-    {
+    public Event deleteEvent(Event e) {
         listOfEvents.remove(e);
         return e;
     }
@@ -68,8 +64,7 @@ public class Day
      * 
      * @return date
      */
-    public int getDate()
-    {
+    public int getDate() {
         return date;
     }
 
@@ -80,8 +75,7 @@ public class Day
      * first
      */
 
-    private void orderEvents()
-    {
+    private void orderEvents() {
         // Initializes two temporary branches to sort
         ArrayList<TimedEvent> tempTimed = new ArrayList<TimedEvent>();
         ArrayList<Event> tempUntimed = new ArrayList<Event>();
@@ -91,23 +85,18 @@ public class Day
         boolean found;
         int compare;
 
-        for (int i = 0; i < listOfEvents.size(); i++)
-        {
+        for (int i = 0; i < listOfEvents.size(); i++) {
             // if event is timed find the index of the first time after the
             // event and add event there
-            if (listOfEvents.get(i) instanceof TimedEvent)
-            {
+            if (listOfEvents.get(i) instanceof TimedEvent) {
                 found = false;
                 currTimedEvent = (TimedEvent)listOfEvents.get(i);
 
-                for (int j = 0; j < tempTimed.size(); j++)
-                {
-                    while (!found)
-                    {
-                        compare = currTimedEvent.getStart()
-                            .compareTo(tempTimed.get(j).getStart());
-                        if (compare >= 0)
-                        {
+                for (int j = 0; j < tempTimed.size(); j++) {
+                    while (!found) {
+                        compare = currTimedEvent.getStart().compareTo(tempTimed
+                            .get(j).getStart());
+                        if (compare >= 0) {
                             nextIndex = j;
                             found = true;
                         }
@@ -118,19 +107,16 @@ public class Day
 
             }
             // if event is not timed add to untimed list
-            else if (listOfEvents.get(i) != null)
-            {
+            else if (listOfEvents.get(i) != null) {
                 tempUntimed.add(listOfEvents.get(i));
             }
         }
         // combine timed and untimed list to hold all timed events in order
         // followed by untimed events
-        for (int i = 0; i < tempTimed.size(); i++)
-        {
+        for (int i = 0; i < tempTimed.size(); i++) {
             newList.add(tempTimed.get(i));
         }
-        for (int i = 0; i < tempUntimed.size(); i++)
-        {
+        for (int i = 0; i < tempUntimed.size(); i++) {
             newList.add(tempUntimed.get(i));
         }
 
@@ -145,21 +131,18 @@ public class Day
      * 
      * @return listOfEvents
      */
-    public ArrayList<Event> getListOfEvents()
-    {
+    public ArrayList<Event> getListOfEvents() {
         return listOfEvents;
     }
 
-    
+
     /**
-     * When day is printed, each event printed on new line. 
+     * When day is printed, each event printed on new line.
      */
 
-    public String toString()
-    {
+    public String toString() {
         String result = "Date: " + date + "\n";
-        for (int i = 0; i < listOfEvents.size(); i++)
-        {
+        for (int i = 0; i < listOfEvents.size(); i++) {
             result += listOfEvents.get(i) + "\n";
         }
         return result;
@@ -173,8 +156,7 @@ public class Day
      * 
      * @return listOfEvents.size() != 0
      */
-    public boolean containEvent()
-    {
+    public boolean containEvent() {
         return listOfEvents.size() != 0;
     }
 
@@ -183,10 +165,8 @@ public class Day
     /**
      * for display
      */
-    public void printEvents()
-    {
-        for (Event event : listOfEvents)
-        {
+    public void printEvents() {
+        for (Event event : listOfEvents) {
             System.out.println(event.getTitle());
             // Spacing between months
             // System.out.println();

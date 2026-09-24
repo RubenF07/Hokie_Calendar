@@ -6,8 +6,7 @@ package calendar;
  * @author Sarah
  * @version Sep 17, 2026
  */
-public class Month
-{
+public class Month {
     // ~ Fields ................................................................
     private String monthName;
     private int numDays;
@@ -23,8 +22,7 @@ public class Month
      * @param startWeekDay
      */
     // ~ Constructors ..........................................................
-    public Month(String monthName, int numDays, String startWeekDay)
-    {
+    public Month(String monthName, int numDays, String startWeekDay) {
         this.monthName = monthName;
         this.numDays = numDays;
         this.startWeekDay = startWeekDay;
@@ -43,8 +41,7 @@ public class Month
      * 
      * @return monthName
      */
-    public String getMonth()
-    {
+    public String getMonth() {
         return monthName;
     }
 
@@ -55,8 +52,7 @@ public class Month
      * 
      * @return numDays
      */
-    public int getNumDays()
-    {
+    public int getNumDays() {
         return numDays;
     }
 
@@ -67,8 +63,7 @@ public class Month
      * 
      * @return startWeekDay
      */
-    public String getStartWeekDay()
-    {
+    public String getStartWeekDay() {
         return startWeekDay;
     }
 
@@ -79,17 +74,19 @@ public class Month
      * 
      * @return day array
      */
-    public Day[] getDays()
-    {
+    public Day[] getDays() {
         return entireMonth;
     }
 
 
-    public String toString()
-    {
+    /**
+     * Returns the month as text: all of the days within the month
+     *
+     * @return the month as a string
+     */
+    public String toString() {
         String monthArrayString = "";
-        for (int i = 0; i < numDays; i++)
-        {
+        for (int i = 0; i < numDays; i++) {
             monthArrayString += (entireMonth[i]).getDate() + " ";
         }
         return monthArrayString;
