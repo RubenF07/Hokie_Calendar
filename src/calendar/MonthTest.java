@@ -1,8 +1,11 @@
 package calendar;
+
 import student.TestCase;
-public class MonthTest extends TestCase
+
+public class MonthTest
+    extends TestCase
 {
-    //~ Fields ................................................................
+    // ~ Fields ................................................................
     Calendar myCalendar;
     Month[] allMonths;
     Month august;
@@ -15,8 +18,8 @@ public class MonthTest extends TestCase
     Month march;
     Month april;
     Month may;
-    
-    //~ SetUp ..........................................................
+
+    // ~ SetUp ..........................................................
     public void setUp()
     {
         myCalendar = new Calendar();
@@ -32,8 +35,9 @@ public class MonthTest extends TestCase
         april = allMonths[8];
         may = allMonths[9];
     }
-    
-    //~Public  Methods ........................................................
+
+
+    // ~Public Methods ........................................................
     public void testGetStartWeekDay()
     {
         assertEquals("Saturday", august.getStartWeekDay());

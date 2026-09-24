@@ -149,17 +149,24 @@ public class Day
         return listOfEvents;
     }
 
-    
+
     /**
-     * When day is printed, each event printed on new line. 
+     * When day is printed, each event printed on new line.
      */
 
     public String toString()
     {
-        String result = "Date: " + date + "\n";
+        orderEvents();
+        String result = "";
         for (int i = 0; i < listOfEvents.size(); i++)
         {
-            result += listOfEvents.get(i) + "\n";
+            result += listOfEvents.get(i).getTitle();
+            if (listOfEvents.get(i) instanceof TimedEvent)
+            {
+                result += " at ";
+                result += ((TimedEvent)listOfEvents.get(i)).getStart();
+            }
+            result += "\n";
         }
         return result;
 
@@ -184,12 +191,7 @@ public class Day
      */
     public void printEvents()
     {
-        for (Event event : listOfEvents)
-        {
-            System.out.println(event.getTitle());
-            // Spacing between months
-            // System.out.println();
-        }
+        System.out.println(this.toString());
     }
 
 }
