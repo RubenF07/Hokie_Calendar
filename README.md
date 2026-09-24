@@ -10,4 +10,4 @@ Instructions for use:
 2. Navigate to the Main Class
 3. Run the program from the Main Class
 4. Interact with the console to use Hokie Calendar
-5. Follow the step-by-step instructions provided in the console.
+5. Use the menu options to navigate and manage your calendar

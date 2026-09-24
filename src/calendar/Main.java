@@ -271,7 +271,7 @@ public class Main {
         disp.printEvent(event);
 
         // get event operation
-        System.out.println("Which option would you like:");
+        System.out.println("\nWhich option would you like:");
         System.out.println("1: Change Title");
         System.out.println("2: Change Description");
         System.out.println("3: Change Location");
@@ -315,7 +315,7 @@ public class Main {
             disp.printEvent(event);
 
             // get event operation
-            System.out.println("Which option would you like:");
+            System.out.println("\nWhich option would you like:");
             System.out.println("1: Change Title");
             System.out.println("2: Change Description");
             System.out.println("3: Change Location");
