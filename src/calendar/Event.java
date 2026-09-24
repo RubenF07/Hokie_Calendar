@@ -43,6 +43,10 @@ public class Event {
 
     @Override
     public String toString() {
-        return title+"\n"+description+"\nat "+location;
+        String res = title+"\n"+description;
+        if (!location.equals("")) {
+            res += "\nat "+location;
+        }
+        return res;
     }
 }

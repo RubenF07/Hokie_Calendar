@@ -20,7 +20,7 @@ public class Time {
         else {
             am_pm = "pm";
         }
-        return hour + ":" + minute + am_pm;
+        return String.format("%02d:%02d%s", hour, minute, am_pm);
     }
 
     public int compareTo(Time t) {
