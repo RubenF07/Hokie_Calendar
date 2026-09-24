@@ -46,14 +46,19 @@ public class Display
        switch(month.getStartWeekDay()){
            case ("Monday"):
                startDayIndex = 1;
+               break;
            case ("Tuesday"):
                startDayIndex = 2;
+               break;
            case ("Wednesday"):
                startDayIndex = 3;
+               break;
            case ("Thursday"):
                startDayIndex = 4;
+               break;
            case ("Friday"):
                startDayIndex = 5;
+               break;
            case ("Saturday"):
                startDayIndex = 6;
        }
