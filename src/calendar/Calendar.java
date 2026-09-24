@@ -20,6 +20,7 @@ public class Calendar {
     private Month[] fullCalendar;
     private Display display;
 
+    // Default constructor: Initializes 10 Month objects for 2026
     /**
      * Creates the calendar by reading month data from the monthinfo file.
      */
