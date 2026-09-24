@@ -1,4 +1,6 @@
 package calendar;
+import java.lang.Character;
+
 public class Display
 {
    // ----------------------------------------------------------
@@ -26,6 +28,7 @@ public class Display
      */
     public void printMonth(Month month) {
        String ANSI_RED = "\u001B[31m";
+       String ANSI_RESET = "\033[0m";
        //String ANSI_GREEN = "\u001B[32m";
        //String ANSI_ORANGE = "\u001B[33m";
        String outerDivider = "-----------------------------";
@@ -33,9 +36,29 @@ public class Display
 
        System.out.println(" ");
        System.out.println(outerDivider);
-
-
-       String titleText = month.getMonth() + " 2026 :)";
+       
+       String emoji = "🦃";
+       
+       switch(month.getMonth()){
+           case ("October"):
+               emoji = "🎃👻🍬💀";
+           case ("November"):
+               emoji = "☕🍂🧺🧸";
+           case ("December"):
+               emoji = "❄️☃️🍫☕️";
+           case ("January"):
+               emoji = "🧊☃️🧤❄️";
+           case ("February"):
+               emoji = "🍓🍰💌🧸";
+           case ("March"):
+               emoji = "🐰🐇🐣🌷";
+           case ("April"):
+               emoji = "🌞🐝🌸☂";
+           case ("May"):
+               emoji = "🌴🍹🍉⛱️";
+       }
+       
+       String titleText = month.getMonth() + " 2026 " + emoji;
        System.out.printf("| %-25s |\n", titleText);
 
        System.out.println(innerDivider);
@@ -46,14 +69,19 @@ public class Display
        switch(month.getStartWeekDay()){
            case ("Monday"):
                startDayIndex = 1;
+               break;
            case ("Tuesday"):
                startDayIndex = 2;
+               break;
            case ("Wednesday"):
                startDayIndex = 3;
+               break;
            case ("Thursday"):
                startDayIndex = 4;
+               break;
            case ("Friday"):
                startDayIndex = 5;
+               break;
            case ("Saturday"):
                startDayIndex = 6;
        }
@@ -72,7 +100,7 @@ public class Display
            if (month.getDays()[d-1].containEvent()) {
                ansi_color = ANSI_RED;
            }
-           System.out.printf(ansi_color + "%02d |", d);
+           System.out.printf(ansi_color + "%02d " + ANSI_RESET + "|", d);
            currentColumn++;
            // Wrap to the next line after Saturday (7 columns)
            if (currentColumn == 7 && d != totalDays) {
@@ -96,24 +124,35 @@ public class Display
 
    // ----------------------------------------------------------
     /**
-     * Place a description of your method here.
+     * Print event list based on inputed Day
+     * @param d
+     *      day
+     * @param m
+     *      month
+     * @return 
+     *      list of event string
      */
-    public void printDay(Day d, Month m) {
-       System.out.println("\n"+m.getMonth()+" "+d.getDate());
-       System.out.println("-----------");
+    public String printDay(Day d, Month m) {
+       String result = "\n"+m.getMonth()+" "+d.getDate();
+       result += "\n-----------";
        if (d.getListOfEvents().size() == 0) {
-           System.out.println("NO EVENTS TODAY");
+           result += "NO EVENTS TODAY";
        }
-       d.printEvents();
-       System.out.println(" ");
+       result += d.printEvents();
+       result += " ";
+       return result;
    }
 
    // ----------------------------------------------------------
     /**
-     * Place a description of your method here.
-     */
-    public void printEvent(Event e) {
-        System.out.println("\n"+e);
+     * Print event.
+     * @param e 
+     *      event object
+     * @return 
+     *      event string
+     */     
+    public String printEvent(Event e) {
+        return "\n"+e;
    }
 
 

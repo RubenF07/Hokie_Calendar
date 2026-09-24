@@ -19,7 +19,7 @@ public class Calendar {
     private Month[] fullCalendar;
     private Display display;
 
-    // Default constructor: Initializes 12 Month objects for 2026
+    // Default constructor: Initializes 10 Month objects for 2026
     public Calendar() {
         this.fullCalendar = new Month[10];
         this.display = new Display();
@@ -56,7 +56,7 @@ public class Calendar {
     }
 
 
-    // Prints the entire year (all 12 months)
+    // Prints the entire year 
     public void printYear() {
         for (Month month : fullCalendar) {
             display.printMonth(month);

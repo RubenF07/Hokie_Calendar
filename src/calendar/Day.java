@@ -183,14 +183,16 @@ public class Day
     /**
      * for display
      */
-    public void printEvents()
+    public String printEvents()
     {
+        String s = "";
         for (Event event : listOfEvents)
         {
-            System.out.println(event.getTitle());
+            s += "\n" + event.getTitle();
             // Spacing between months
             // System.out.println();
         }
+        return s;
     }
 
 }

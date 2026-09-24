@@ -14,15 +14,17 @@ public class DayTest
     // ~ Set Up ..........................................................
     public void setUp()
     {
-        allDay = new Event("All Day", "Here", true);
+        allDay = new Event("Mother's Day", "This is all day", "Here", true);
         timedFirst = new TimedEvent(
             "Yoga",
+            "Weekly Class",
             "Gym",
             true,
             new Time(11, 30, true),
             new Time(1, 30, false));
         timedSecond = new TimedEvent(
             "Birthday",
+            "Mom's turning 40",
             "Home",
             true,
             new Time(5, 30, false),
@@ -32,24 +34,26 @@ public class DayTest
 
 
     // ~Test Methods ........................................................
+    // ----------------------------------------------------------
+    /**
+     * test addEvent()
+     */
     public void testAddEvent()
     {
-        assertEquals("Date: 22\n", today.toString());
+        assertEquals("", today.toString());
 
         today.addEvent(timedSecond);
         assertEquals(1, today.getListOfEvents().size());
-        assertEquals("Date: 22\nBirthday at Home from 5:30-7:45\n", today.toString());
+        assertEquals("Birthday at 5:30 PM\n", today.toString());
 
         today.addEvent(allDay);
         assertEquals(2, today.getListOfEvents().size());
-        assertEquals(
-            "Date: 22\nBirthday at Home from 5:30-7:45\nAll Day at Here\n",
-            today.toString());
+        assertEquals("Birthday at 5:30 PM\nMother's Day\n", today.toString());
 
         today.addEvent(timedFirst);
         assertEquals(3, today.getListOfEvents().size());
         assertEquals(
-            "Date: 22\nYoga at Gym from 11:30-1:30\nBirthday at Home from 5:30-7:45\nAll Day at Here\n",
+            "Yoga at 11:30 AM\nBirthday at 5:30 PM\nMother's Day\n",
             today.toString());
     }
 }
