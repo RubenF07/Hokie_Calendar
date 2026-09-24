@@ -7,31 +7,32 @@ public class DispTest extends student.TestCase
   
     //~ Constructors ..........................................................
     public void setUp() {
-        dis = new Display();
+       dis = new Display();
        m = new Month("August", 31, "Saturday");
     }   
   
     // ----------------------------------------------------------
     /**
-     * To test the display method print month
+     * Place a description of your method here.
      */
-    public void testPrintMonth()
+    public void testDisplay()
        {
            dis.printMonth(m);
        }
        
        // ----------------------------------------------------------
     /**
-     * to test the display method print day
+     * Place a description of your method here.
      */
     public void testPrintDay()
        {
        Day day = m.getDays()[10];
        
-       Event e = new Event("Rest", "Hoge", true);
+       Event e = new Event("Rest", "nothing", "Hoge", true);
        day.addEvent(e);
        
-       dis.printDay(day);
+       dis.printDay(day, m);
+       dis.printMonth(m);
        }
   
 }
